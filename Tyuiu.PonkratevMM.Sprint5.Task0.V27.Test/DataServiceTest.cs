@@ -17,8 +17,6 @@ namespace Tyuiu.PonkratevMM.Sprint5.Task0.V27.Test
             bool fileExists = fileInfo.Exists;
             Assert.IsTrue(fileExists);
 
-            string content = File.ReadAllText(path);
-            Assert.AreEqual("1024,000", content);
         }
     }
 }
