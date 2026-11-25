@@ -23,7 +23,7 @@ namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8
             Console.WriteLine("* Выполнил: Понкратев М. М. | ИИПб-24-1                                   *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* УСЛОВИЕ:                                                                *");
-            Console.WriteLine("* Дан файл с набором символьных данных. Заменить все заглавные русские     *");
+            Console.WriteLine("* Дан файл с набором символьных данных. Заменить все заглавные русские    *");
             Console.WriteLine("* буквы на строчные. Полученный результат сохранить в файл.               *");
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
@@ -38,7 +38,7 @@ namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
 
-            string res = ds.GetResult(path);
+            string res = ds.LoadDataAndSave(path);
             File.WriteAllText(outPath, res, Encoding.UTF8);
 
             Console.WriteLine("Файл сохранён: " + outPath);
