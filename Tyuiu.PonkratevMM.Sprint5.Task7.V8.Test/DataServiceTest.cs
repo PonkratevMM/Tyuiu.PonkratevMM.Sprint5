@@ -1,4 +1,5 @@
-﻿using Tyuiu.PonkratevMM.Sprint5.Task7.V8.Lib;
+﻿using System.Text;
+using Tyuiu.PonkratevMM.Sprint5.Task7.V8.Lib;
 
 namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8.Test
 {
@@ -6,18 +7,17 @@ namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8.Test
     public sealed class DataServiceTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CheckLoadDataAndSave()
         {
             DataService ds = new DataService();
 
-            string inputPath = Path.Combine(Path.GetTempPath(), "InPutDataFileTask7V8.txt");
-            string content = "ПриВет МиР ёЛка 123";
-            ds.WriteToFile(inputPath, content);
+            string path = Path.Combine(Path.GetTempPath(), "InPutDataFileTask7V8.txt");
+            File.WriteAllText(path, "ПриВет МиР, ёЛка 123", Encoding.UTF8);
 
-            string res = ds.GetResult(inputPath);
-            string wait = "привет мир ёлка 123";
+            string res = ds.GetResult(path);
+            string expected = "привет мир, ёлка 123";
 
-            Assert.AreEqual(wait, res);
+            Assert.AreEqual(expected, res);
         }
     }
 }

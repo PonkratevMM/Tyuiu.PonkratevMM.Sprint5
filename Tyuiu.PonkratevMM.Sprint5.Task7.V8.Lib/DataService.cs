@@ -1,40 +1,31 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using tyuiu.cources.programming.interfaces.Sprint5;
 
 namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8.Lib
 {
-    public class DataService
+    public class DataService : ISprint5Task7V8
     {
-        public string ReadFile(string path)
-        {
-            return File.ReadAllText(path, Encoding.UTF8);
-        }
-
-        public string GetResult(string path)
+        public string LoadDataAndSave(string path)
         {
             string text = File.ReadAllText(path, Encoding.UTF8);
-            char[] result = new char[text.Length];
+            StringBuilder result = new StringBuilder();
 
-            for (int i = 0; i < text.Length; i++)
+            foreach (char c in text)
             {
-                char c = text[i];
                 if ((c >= 'А' && c <= 'Я') || c == 'Ё')
                 {
-                    result[i] = char.ToLower(c);
+                    result.Append(char.ToLower(c));
                 }
                 else
                 {
-                    result[i] = c;
+                    result.Append(c);
                 }
             }
 
-            return new string(result);
-        }
-
-        public void WriteToFile(string path, string content)
-        {
-            File.WriteAllText(path, content, Encoding.UTF8);
+            return result.ToString();
         }
     }
 }
+

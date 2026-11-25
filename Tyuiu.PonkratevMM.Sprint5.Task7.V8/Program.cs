@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using Tyuiu.PonkratevMM.Sprint5.Task7.V8.Lib;
 
 namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8
@@ -10,8 +11,8 @@ namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8
         {
             DataService ds = new DataService();
 
-            string path = Path.Combine(@"C:\DataSprint5", "InPutDataFileTask7V8.txt");
-            string outPath = Path.Combine(@"C:\DataSprint5", "OutPutDataFileTask7V8.txt");
+            string path = Path.Combine(Path.GetTempPath(), "InPutDataFileTask7V8.txt");
+            string outPath = Path.Combine(Path.GetTempPath(), "OutPutDataFileTask7V8.txt");
 
             Console.Title = "Спринт #5 | Выполнил: Понкратев М. М. | ИИПб-24-1";
             Console.WriteLine("***************************************************************************");
@@ -27,20 +28,21 @@ namespace Tyuiu.PonkratevMM.Sprint5.Task7.V8
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
+
+            string input = File.ReadAllText(path, Encoding.UTF8);
             Console.WriteLine("Путь к файлу: " + path);
-            Console.WriteLine("Содержимое файла:");
-            Console.WriteLine("***************************************************************************");
-            Console.WriteLine(ds.ReadFile(path));
+            Console.WriteLine("Содержимое входного файла:");
+            Console.WriteLine(input);
+
             Console.WriteLine("***************************************************************************");
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
 
             string res = ds.GetResult(path);
-            ds.WriteToFile(outPath, res);
+            File.WriteAllText(outPath, res, Encoding.UTF8);
 
             Console.WriteLine("Файл сохранён: " + outPath);
             Console.WriteLine("Результат:");
-            Console.WriteLine("***************************************************************************");
             Console.WriteLine(res);
             Console.WriteLine("***************************************************************************");
             Console.ReadKey();
